@@ -4,7 +4,7 @@ pipeline {
  stages {
  stage(‘checkout’) {
  steps {
- git branch: ‘develop’, url: ‘git@your url’
+ git branch: ‘jenkins’, url: ‘git@github.com/terraform-aws-modules/terraform-aws-vpc.git’
  
  }
  }
