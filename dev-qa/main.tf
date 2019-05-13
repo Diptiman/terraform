@@ -1,10 +1,15 @@
+
+provider "aws" {
+  region = "us-east-2"
+}
+
 module "vpc" {
-  source = "../modules/vpc"
+  source = "../vpc"
 
   //Region and keys
   region = "us-east-2"
-  secret_key = ""// need to give as input
-  access_key = "" // need to give as input
+  secret_key = "qqbrLEstDfY96UuY+k8q+ic3NqvnpHSbrl2NunFa"// need to give as input
+  access_key = "AKIAJDKRNEU3WCCDFI3Q" // need to give as input
 
   //vpc
   vpc_cidr = "10.10.0.0/16"
@@ -17,7 +22,7 @@ module "vpc" {
 }
 
 module "security_group" {
-  source = "../modules/security_group"
+  source = "../security_group"
 
   //security group
   security_group_name = "mysecuritygroup"
@@ -28,13 +33,3 @@ module "security_group" {
   subnet_ids = "${module.vpc.subnet_id}"
 }
 
-module "es" {
-  source = "../modules/es"
-  domain_name = "my-elasticsearch-domain"
-  management_public_ip_addresses = ["34.203.XXX.YYY"]
-  instance_count = 4
-  instance_type = "m4.2xlarge.elasticsearch"
-  dedicated_master_type = "m4.large.elasticsearch"
-  es_zone_awareness = true
-  ebs_volume_size = 100
-}
